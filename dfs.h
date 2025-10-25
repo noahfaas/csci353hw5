@@ -11,8 +11,8 @@ void dfs(AdjacencyList* graph, int start, int numNodes){
 	// performs a depth first traversal, printing each node as it is visited
 
 	// WHEN YOU START WORKING ON THIS, DELETE OR COMMENT THE NEXT TWO LINES
-	std::cout << "dfs not implemented" << std::endl;
-	return;
+	//std::cout << "dfs not implemented" << std::endl;
+	//return;
 
 	// track which nodes have been visited using an array of booleans
 	bool* visited = new bool[numNodes];
@@ -21,13 +21,26 @@ void dfs(AdjacencyList* graph, int start, int numNodes){
 	std::stack<int> to_visit;
 
 	// WHAT SHOULD YOU DO HERE?
-
+	for (int i = 0; i < numNodes; i++) {
+    	visited[i] = false;
+	}
+	to_visit.push(start);
 	int current;
 
 	// while there are still nodes to explore
 	while (!to_visit.empty()){
 		// WHAT SHOULD YOU DO HERE?
-
+		current = to_visit.top();
+    	to_visit.pop();
+		if (!visited[current]){
+        	visited[current] = true;
+        	std::cout << current << " ";
+    	}
+		for (auto neighbor : *(graph->neighbors(current))) {
+    		if (!visited[neighbor]) {
+        		to_visit.push(neighbor);
+    		}
+		}
 	}
 	std::cout << std::endl;
 }

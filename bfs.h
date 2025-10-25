@@ -11,8 +11,8 @@ void bfs(AdjacencyList* graph, int start, int numNodes){
 	// performs a breadth first traversal, printing each node as it is visited
 
 	// WHEN YOU START WORKING ON THIS, DELETE OR COMMENT THE NEXT TWO LINES
-	std::cout << "bfs not implemented" << std::endl;
-	return;
+	//std::cout << "bfs not implemented" << std::endl;
+	//return;
 
 	// track which nodes have been visited using an array of booleans
 	bool* visited = new bool[numNodes];
@@ -21,18 +21,25 @@ void bfs(AdjacencyList* graph, int start, int numNodes){
 	std::queue<int> to_visit;
 
 	// WHAT SHOULD YOU DO HERE?
-
+	to_visit.push(start);
 	int current;
 
 	// while there are still nodes to explore
 	while (!to_visit.empty()){
 		// WHAT SHOULD YOU DO HERE?
+		current = to_visit.front();
+    	to_visit.pop();
 
 		if (!visited[current]){
 			// WHAT SHOULD YOU DO HERE?
+			visited[current] = true;
+        	std::cout << current << " ";
 
 			for (auto neighbor : *(graph->neighbors(current))){		//for each neighbor of current (this is using an iterator through the neighbors of current, using the member function neighbors of AdjacencyList)
 				// WHAT SHOULD YOU DO HERE?
+				if (!visited[neighbor]){
+                	to_visit.push(neighbor);
+            	}
 			}
 		}
 	}
